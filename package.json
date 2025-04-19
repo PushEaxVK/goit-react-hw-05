@@ -1,5 +1,5 @@
 {
-  "name": "goit-react-hw-04",
+  "name": "goit-react-hw-05",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build-github": "vite build --base=/goit-react-hw-04/",
+    "build-github": "vite build --base=/goit-react-hw-05/",
     "start": "vite --host",
     "sync": "git fetch origin && git reset --hard origin/main && git clean -fd"
   },
