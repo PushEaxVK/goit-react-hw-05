@@ -3,6 +3,9 @@ import css from './App.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('./pages/MovieDetailsPage/MovieDetailsPage'));
+const MovieCast = lazy(() => import('./components/MovieCast/MovieCast'));
 
 function App() {
   return (
