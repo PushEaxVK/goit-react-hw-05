@@ -12,6 +12,8 @@ const MovieReviews = lazy(() =>
   import('./components/MovieReviews/MovieReviews')
 );
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+const Navigation = lazy(() => import('./components/Navigation/Navigation'));
+const MovieList = lazy(() => import('./components/MovieList/MovieList'));
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <MovieCast />
         <MovieReviews />
         <NotFoundPage />
+        <Navigation />
+        <MovieList />
         <Toaster position="bottom-right" />
       </div>
     </Suspense>
