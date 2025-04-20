@@ -1,1 +1,0 @@
-{"version":3,"file":"HomePage-6SsfX8Fy.js","sources":["../../src/pages/HomePage/HomePage.jsx"],"sourcesContent":["import s from './HomePage.module.css';\n\nconst HomePage = () => {\n  return <div className={s.home}>HomePage page</div>;\n};\n\nexport default HomePage;\n"],"names":["HomePage","jsx"],"mappings":"2EAEMA,EAAW,IACPC,EAAA,IAAA,MAAA,CAAI,UAAW,EAAE,KAAM,SAAa,gBAAA"}
