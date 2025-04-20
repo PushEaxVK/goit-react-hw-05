@@ -1,6 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import css from './App.module.css';
 import toast, { Toaster } from 'react-hot-toast';
+import { getConfig } from './services/api';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
@@ -16,6 +17,13 @@ const Navigation = lazy(() => import('./components/Navigation/Navigation'));
 const MovieList = lazy(() => import('./components/MovieList/MovieList'));
 
 function App() {
+  useEffect(() => {
+    const testFetch = async () => {
+      console.log(await getConfig());
+    };
+    testFetch();
+  }, []);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className={css.app}>
