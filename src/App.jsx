@@ -8,6 +8,10 @@ const MovieDetailsPage = lazy(() =>
   import('./pages/MovieDetailsPage/MovieDetailsPage')
 );
 const MovieCast = lazy(() => import('./components/MovieCast/MovieCast'));
+const MovieReviews = lazy(() =>
+  import('./components/MovieReviews/MovieReviews')
+);
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 function App() {
   return (
@@ -18,6 +22,8 @@ function App() {
         <MoviesPage />
         <MovieDetailsPage />
         <MovieCast />
+        <MovieReviews />
+        <NotFoundPage />
         <Toaster position="bottom-right" />
       </div>
     </Suspense>
