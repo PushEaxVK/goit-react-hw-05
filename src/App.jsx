@@ -3,6 +3,7 @@ import css from './App.module.css';
 // import { getConfig } from './services/api';
 import { Route, Routes } from 'react-router-dom';
 import { useApp } from './appContext';
+import Loader from './components/Loader/Loader';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
@@ -31,7 +32,14 @@ function App() {
   }, [config]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div>
+          <p>Loading page...</p>
+          <Loader />
+        </div>
+      }
+    >
       <div className={css.app}>
         <Navigation />
         <Routes>
