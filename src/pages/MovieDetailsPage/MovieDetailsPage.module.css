@@ -1,3 +1,35 @@
 .detail {
-  background-color: var(--pastel-pink);
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thumb {
+  display: flex;
+  gap: 20px;
+}
+
+.back {
+  /* margin-bottom: 100px; */
+}
+
+.list {
+  padding-left: 20px;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  /* margin-bottom: 10px; */
+}
+
+.detailsText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 30px;
 }
