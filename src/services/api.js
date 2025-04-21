@@ -7,6 +7,7 @@ const API_KEY = '89ada925d9d6d445a1070f5ee28b8c59';
 
 const URLS = {
   CONFIG: 'https://api.themoviedb.org/3/configuration',
+  TRANDING: 'https://api.themoviedb.org/3/trending/movie/',
 };
 
 const options = {
@@ -17,5 +18,12 @@ const options = {
 
 export async function getConfig() {
   const response = await axios.get(URLS.CONFIG, options);
+  return response.data;
+}
+
+export async function getTrending(time_window = 'day', language = 'en-US') {
+  const response = await axios.get(
+    `${URL.TRANDING}${time_window}?language=${language}`
+  );
   return response.data;
 }
