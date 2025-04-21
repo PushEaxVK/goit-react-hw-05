@@ -1,3 +1,20 @@
 .navigation {
-  background-color: var(--pastel-mint);
+  background-color: #fff;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+
+  nav {
+    display: flex;
+    gap: 10px;
+    font-size: 23px;
+    font-weight: 700;
+
+    a {
+      text-decoration: none;
+    }
+  }
 }
