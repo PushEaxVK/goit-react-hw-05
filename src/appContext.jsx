@@ -39,7 +39,6 @@ const AppProvider = ({ children }) => {
         }
       } catch (error) {
         toast.error('Error when loading trendings!');
-        // console.log(error);
       }
     };
     fetchTrendings();
