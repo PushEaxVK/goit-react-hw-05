@@ -44,3 +44,24 @@ export async function getDetails(signal, movieId, language = 'en-US') {
   );
   return response.data;
 }
+
+export async function getCredits(signal, movieId, language = 'en-US') {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=${language}`,
+    { ...options, signal }
+  );
+  return response.data;
+}
+
+export async function getReviews(
+  signal,
+  movieId,
+  page = 1,
+  language = 'en-US'
+) {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=${language}&page=${page}`,
+    { ...options, signal }
+  );
+  return response.data;
+}
