@@ -1,0 +1,2 @@
+import{u as n,j as s,L as o}from"./index-BCB0vPDp.js";const t="_home_vkgun_1",l={home:t},a=()=>{const{trendings:i}=n();return s.jsxs("div",{className:l.home,children:[s.jsx("h1",{children:"Trending today"}),i.length>0&&s.jsx("ul",{children:i.map(e=>s.jsx("li",{children:s.jsx(o,{to:`/movies/${e.id}`,children:e.original_title})},e.id))})]})};export{a as default};
+//# sourceMappingURL=HomePage-Q-2Kurmf.js.map
