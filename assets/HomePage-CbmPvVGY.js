@@ -1,2 +1,0 @@
-import{u as o,j as s,L as n}from"./index-CkjDDPl7.js";const t="_home_qiezh_1",h={home:t},r=()=>{const{trendings:i}=o();return s.jsxs("div",{className:h.home,children:[s.jsx("h1",{children:"Trending today"}),i.length>0&&s.jsx("ul",{children:i.map(e=>s.jsx("li",{children:s.jsx(n,{to:`/movies/${e.id}`,children:e.original_title})},e.id))})]})};export{r as default};
-//# sourceMappingURL=HomePage-CbmPvVGY.js.map
