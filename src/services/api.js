@@ -16,14 +16,72 @@ const options = {
   },
 };
 
+const controllerMap = new Map();
+
+function createAbortController(key) {
+  const existing = controllerMap.get(key);
+  if (existing) existing.abort();
+  const controller = new AbortController();
+  controllerMap.set(key, controller);
+  return controller.signal;
+}
+
+function cancelRequest(key) {
+  const controller = controllerMap.get(key);
+  if (controller) controller.abort();
+  controllerMap.delete(key);
+}
+
+function cancelAllRequests() {
+  for (let key of controllerMap.keys()) cancelRequest(key);
+}
+
+function handleAxiosError(error) {
+  if (
+    axios.isCancel(error) ||
+    error.name === 'AbortError' ||
+    error.name === 'CanceledError'
+  ) {
+    // console.log('Request is canceled!');
+    return;
+  } else {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
 export async function getConfig() {
-  const response = await axios.get(URLS.CONFIG, options);
-  return response.data;
+  const signal = createAbortController('getConfig');
+
+  try {
+    const response = await axios.get(URLS.CONFIG, {
+      ...options,
+      signal,
+    });
+    return response.data;
+  } catch (error) {
+    handleAxiosError(error);
+  }
+}
+
+export function cancelConfigRequest() {
+  cancelRequest('getConfig');
 }
 
 export async function getTrending(time_window = 'day', language = 'en-US') {
-  const response = await axios.get(
-    `${URL.TRANDING}${time_window}?language=${language}`
-  );
-  return response.data;
+  const signal = createAbortController('getTrending');
+
+  try {
+    const response = await axios.get(
+      `${URL.TRANDING}${time_window}?language=${language}`,
+      { ...options, signal }
+    );
+    return response.data;
+  } catch (error) {
+    handleAxiosError(error);
+  }
+}
+
+export function cancelTrendingRequest() {
+  cancelRequest('getTrending');
 }
