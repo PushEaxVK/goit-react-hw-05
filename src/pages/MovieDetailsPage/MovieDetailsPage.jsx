@@ -37,7 +37,7 @@ const MovieDetailsPage = () => {
         <>
           <div className={s.thumb}>
             <img
-              src={`${config.images.secure_base_url}w500${details.poster_path}`}
+              src={`${config.images.secure_base_url}original${details.poster_path}`}
               alt={details.title}
               width="250"
               height="375"
