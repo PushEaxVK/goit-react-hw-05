@@ -1,3 +1,23 @@
 .home {
-  background-color: var(--pastel-blue);
+  background-color: #fff;
+  padding: 20px;
+
+  h1 {
+    margin-bottom: 16px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 20px;
+
+    li {
+      background-color: rgb(223, 223, 223);
+      padding: 8px;
+      border-radius: 8px;
+      list-style-type: disc;
+      max-width: 800px;
+    }
+  }
 }
