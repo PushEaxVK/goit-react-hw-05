@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import css from './App.module.css';
-import toast, { Toaster } from 'react-hot-toast';
 import { getConfig } from './services/api';
+import { Route, Routes } from 'react-router-dom';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
@@ -27,16 +27,17 @@ function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className={css.app}>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies/" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
         <h1>Hello from React!</h1>
-        <HomePage />
-        <MoviesPage />
-        <MovieDetailsPage />
         <MovieCast />
         <MovieReviews />
-        <NotFoundPage />
-        <Navigation />
         <MovieList />
-        <Toaster position="bottom-right" />
       </div>
     </Suspense>
   );
