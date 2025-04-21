@@ -1,7 +1,8 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import css from './App.module.css';
-import { getConfig } from './services/api';
+// import { getConfig } from './services/api';
 import { Route, Routes } from 'react-router-dom';
+import { useApp } from './appContext';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
@@ -17,12 +18,17 @@ const Navigation = lazy(() => import('./components/Navigation/Navigation'));
 const MovieList = lazy(() => import('./components/MovieList/MovieList'));
 
 function App() {
+  // useEffect(() => {
+  //   const testFetch = async () => {
+  //     console.log(await getConfig());
+  //   };
+  //   testFetch();
+  // }, []);
+  const { config } = useApp();
+
   useEffect(() => {
-    const testFetch = async () => {
-      console.log(await getConfig());
-    };
-    testFetch();
-  }, []);
+    if (config) console.log(config);
+  }, [config]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -34,7 +40,6 @@ function App() {
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <h1>Hello from React!</h1>
         <MovieCast />
         <MovieReviews />
         <MovieList />
