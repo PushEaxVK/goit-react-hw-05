@@ -1,38 +1,42 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import s from './MovieDetailsPage.module.css';
-import { useEffect, useState } from 'react';
-import { getDetails, cancelDetailsRequest } from '../../services/api';
+import { useEffect } from 'react';
+import { getDetails } from '../../services/api';
 import toast from 'react-hot-toast';
 import { useApp } from '../../appContext';
+import { useFetchData } from '../../hooks/useFetchData';
+import Loader from '../../components/Loader/Loader';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const [details, setDetails] = useState(null);
   const location = useLocation();
   const { config } = useApp();
 
+  const {
+    data: details,
+    loading,
+    error,
+    fetchData,
+    cancel,
+  } = useFetchData(getDetails);
+
   useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        const detailsData = await getDetails(movieId);
-        if (detailsData) {
-          console.log(detailsData);
-          setDetails(detailsData);
-        }
-      } catch (error) {
-        console.error(error);
-        toast.error('Error when loading Movie Detail!');
-      }
-    };
-    fetchDetails();
-    return () => cancelDetailsRequest();
-  }, [movieId, setDetails]);
+    fetchData(movieId);
+    return () => cancel();
+  }, [movieId, cancel, fetchData]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error('Error when loading Movie Details');
+    }
+  }, [error]);
 
   return (
     <div className={s.detail}>
       <Link to={location.state} className={s.back}>
         Go back
       </Link>
+      {loading && <Loader />}
       {details && config && (
         <>
           <div className={s.thumb}>
