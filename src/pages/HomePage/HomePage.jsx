@@ -1,7 +1,8 @@
 import s from './HomePage.module.css';
-// import { getTrending, cancelTrendingRequest } from '../../services/api';
 import { useApp } from '../../appContext';
-import { Link } from 'react-router-dom';
+import { lazy } from 'react';
+
+const MovieList = lazy(() => import('../../components/MovieList/MovieList'));
 
 // adult: false;
 // backdrop_path: '/nAxGnGHOsfzufThz20zgmRwKur3.jpg';
@@ -20,21 +21,12 @@ import { Link } from 'react-router-dom';
 // vote_count: 192;
 
 const HomePage = () => {
-  // const [trends, setTrends] = useState();
   const { trendings } = useApp();
 
   return (
     <div className={s.home}>
       <h1>Trending today</h1>
-      {trendings.length > 0 && (
-        <ul>
-          {trendings.map((trend) => (
-            <li key={trend.id}>
-              <Link to={`/movies/${trend.id}`}>{trend.original_title}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <MovieList movies={trendings} />
     </div>
   );
 };

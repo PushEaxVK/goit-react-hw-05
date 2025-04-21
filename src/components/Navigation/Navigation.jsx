@@ -1,8 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import s from './Navigation.module.css';
 import clsx from 'clsx';
 
 const Navigation = () => {
+  const location = useLocation();
+
   const setActiveClass = ({ isActive }) => {
     return clsx(s.link, isActive && s.active);
   };
@@ -10,10 +12,10 @@ const Navigation = () => {
   return (
     <header className={s.navigation}>
       <nav className={s.menu}>
-        <NavLink className={setActiveClass} to="/">
+        <NavLink className={setActiveClass} to="/" state={location}>
           Home
         </NavLink>
-        <NavLink className={setActiveClass} to="/movies/">
+        <NavLink className={setActiveClass} to="/movies/" state={location}>
           Movies
         </NavLink>
       </nav>
