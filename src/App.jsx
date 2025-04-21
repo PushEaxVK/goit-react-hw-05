@@ -16,15 +16,8 @@ const MovieReviews = lazy(() =>
 );
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const Navigation = lazy(() => import('./components/Navigation/Navigation'));
-const MovieList = lazy(() => import('./components/MovieList/MovieList'));
 
 function App() {
-  // useEffect(() => {
-  //   const testFetch = async () => {
-  //     console.log(await getConfig());
-  //   };
-  //   testFetch();
-  // }, []);
   const { config } = useApp();
 
   useEffect(() => {
@@ -45,12 +38,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <MovieCast />
-        <MovieReviews />
-        <MovieList />
       </div>
     </Suspense>
   );
