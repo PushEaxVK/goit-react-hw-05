@@ -7,6 +7,14 @@ export function useFetchData(apiFn) {
   const [error, setError] = useState(null);
   const controllerRef = useRef(null);
 
+  function isAbortError(error) {
+    return !(
+      axios.isCancel(error) ||
+      error.name === 'AbortError' ||
+      error.name === 'CanceledError'
+    );
+  }
+
   const fetchData = useCallback(
     async (...args) => {
       if (controllerRef.current) {
@@ -25,13 +33,7 @@ export function useFetchData(apiFn) {
         console.log(result);
         return result;
       } catch (error) {
-        if (
-          !(
-            axios.isCancel(error) ||
-            error.name === 'AbortError' ||
-            error.name === 'CanceledError'
-          )
-        ) {
+        if (isAbortError(error)) {
           setError(error);
         }
       } finally {
