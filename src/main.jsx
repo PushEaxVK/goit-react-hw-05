@@ -7,9 +7,11 @@ import { Toaster } from 'react-hot-toast';
 import { BrowserRouter } from 'react-router-dom';
 import { AppProvider } from './appContext.jsx';
 
+const basename = import.meta.env.PUBLIC_URL || '/';
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <AppProvider>
         <App />
         <Toaster position="bottom-right" />
