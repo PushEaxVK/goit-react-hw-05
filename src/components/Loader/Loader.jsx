@@ -9,7 +9,7 @@ const override = {
 
 const Loader = () => {
   return (
-    <div>
+    <div className={s.loader}>
       <ClipLoader
         color="#36d7b7"
         loading={true}
