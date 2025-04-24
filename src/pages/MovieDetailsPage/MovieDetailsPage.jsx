@@ -2,10 +2,10 @@ import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import s from './MovieDetailsPage.module.css';
 import { useEffect } from 'react';
 import { getDetails } from '../../services/api';
-import toast from 'react-hot-toast';
 import { useApp } from '../../appContext';
 import { useFetchData } from '../../hooks/useFetchData';
 import Loader from '../../components/Loader/Loader';
+import Error from '../../components/Error/Error';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -25,18 +25,15 @@ const MovieDetailsPage = () => {
     return () => cancel();
   }, [movieId, cancel, fetchData]);
 
-  useEffect(() => {
-    if (error) {
-      toast.error('Error when loading Movie Details');
-    }
-  }, [error]);
+  const backLink = location.state ?? '/movies';
 
   return (
     <div className={s.detail}>
-      <Link to={location.state} className={s.back}>
+      <Link to={backLink} className={s.back}>
         Go back
       </Link>
       {loading && <Loader />}
+      {error && <Error error="Faild to load movie details!" />}
       {details && config && (
         <>
           <div className={s.thumb}>

@@ -8,6 +8,7 @@ const URLS = {
   CONFIG: 'https://api.themoviedb.org/3/configuration',
   TRANDING: 'https://api.themoviedb.org/3/trending/movie/',
   DETAILS: 'https://api.themoviedb.org/3/movie/',
+  SEARCH: 'https://api.themoviedb.org/3/search/movie',
 };
 
 const options = {
@@ -47,7 +48,7 @@ export async function getDetails(signal, movieId, language = 'en-US') {
 
 export async function getCredits(signal, movieId, language = 'en-US') {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=${language}`,
+    `{URLS.DETAILS}${movieId}/credits?language=${language}`,
     { ...options, signal }
   );
   return response.data;
@@ -60,8 +61,24 @@ export async function getReviews(
   language = 'en-US'
 ) {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}/reviews?language=${language}&page=${page}`,
+    `{URLS.DETAILS}${movieId}/reviews?language=${language}&page=${page}`,
     { ...options, signal }
   );
+  return response.data;
+}
+
+export async function searchByQuery(
+  signal,
+  query,
+  page = 1,
+  language = 'en-US'
+) {
+  const params = {
+    include_adult: false,
+    query,
+    page,
+    language,
+  };
+  const response = await axios.get(URLS.SEARCH, { ...options, signal, params });
   return response.data;
 }
