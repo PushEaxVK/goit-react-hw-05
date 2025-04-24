@@ -4,6 +4,8 @@ import { searchByQuery } from '../../services/api';
 import { useEffect, useState } from 'react';
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
+import { Link } from 'react-router-dom';
+import MovieList from '../../components/MovieList/MovieList';
 
 const MoviesPage = () => {
   const [query, setQuery] = useState('');
@@ -31,10 +33,15 @@ const MoviesPage = () => {
       <form onSubmit={handleSearch}>
         <input type="text" name="query" id="query" />
         <button type="submit">Search</button>
-        {data && console.log('Data', data)}
       </form>
       {loading && <Loader />}
       {error && <Error error="Faild to load search results!" />}
+      {data && console.log('Data', data)}
+      {data?.results && data.results.length && !error > 0 ? (
+        <MovieList movies={data.results} />
+      ) : (
+        <p>No results!</p>
+      )}
     </div>
   );
 };
