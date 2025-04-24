@@ -60,7 +60,7 @@ export async function getReviews(
   language = 'en-US'
 ) {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=${language}&page=${page}`,
+    `https://api.themoviedb.org/3/movie/${movieId}/reviews?language=${language}&page=${page}`,
     { ...options, signal }
   );
   return response.data;
