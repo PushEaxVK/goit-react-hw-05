@@ -61,10 +61,14 @@ const MovieDetailsPage = () => {
           <p>Aditional information</p>
           <ul className={s.list}>
             <li>
-              <Link to="cast">Cast</Link>
+              <Link to="cast" state={location.state}>
+                Cast
+              </Link>
             </li>
             <li>
-              <Link to="reviews">Reviews</Link>
+              <Link to="reviews" state={location.state}>
+                Reviews
+              </Link>
             </li>
           </ul>
           <hr />
