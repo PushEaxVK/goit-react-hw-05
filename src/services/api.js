@@ -47,8 +47,9 @@ export async function getDetails(signal, movieId, language = 'en-US') {
 }
 
 export async function getCredits(signal, movieId, language = 'en-US') {
+  console.log(`{URLS.DETAILS}${movieId}/credits?language=${language}`);
   const response = await axios.get(
-    `{URLS.DETAILS}${movieId}/credits?language=${language}`,
+    `${URLS.DETAILS}${movieId}/credits?language=${language}`,
     { ...options, signal }
   );
   return response.data;
