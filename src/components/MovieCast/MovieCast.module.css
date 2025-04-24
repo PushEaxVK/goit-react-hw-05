@@ -1,3 +1,11 @@
 .cast {
-  background-color: var(--pastel-yellow);
+  background-color: #fff;
+}
+
+.castList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  list-style-type: disc;
 }
