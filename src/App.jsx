@@ -1,8 +1,6 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import css from './App.module.css';
-// import { getConfig } from './services/api';
 import { Route, Routes } from 'react-router-dom';
-import { useApp } from './appContext';
 import Loader from './components/Loader/Loader';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -18,12 +16,6 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const Navigation = lazy(() => import('./components/Navigation/Navigation'));
 
 function App() {
-  const { config } = useApp();
-
-  useEffect(() => {
-    if (config) console.log(config);
-  }, [config]);
-
   return (
     <Suspense
       fallback={
