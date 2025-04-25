@@ -38,7 +38,11 @@ const MovieDetailsPage = () => {
         <>
           <div className={s.thumb}>
             <img
-              src={`${config.images.secure_base_url}original${details.poster_path}`}
+              src={
+                details?.poster_path
+                  ? `${config.images.secure_base_url}original${details.poster_path}`
+                  : 'https://placehold.co/250x375?text=No+Image&font=roboto'
+              }
               alt={details.title}
               width="250"
               height="375"
