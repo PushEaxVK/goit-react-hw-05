@@ -30,7 +30,6 @@ export function useFetchData(apiFn) {
       try {
         const result = await apiFn(controller.signal, ...args);
         setData(result);
-        // console.log(result);
         return result;
       } catch (error) {
         if (isAbortError(error)) {
