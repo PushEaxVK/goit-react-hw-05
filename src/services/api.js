@@ -47,7 +47,6 @@ export async function getDetails(signal, movieId, language = 'en-US') {
 }
 
 export async function getCredits(signal, movieId, language = 'en-US') {
-  console.log(`{URLS.DETAILS}${movieId}/credits?language=${language}`);
   const response = await axios.get(
     `${URLS.DETAILS}${movieId}/credits?language=${language}`,
     { ...options, signal }
@@ -62,7 +61,7 @@ export async function getReviews(
   language = 'en-US'
 ) {
   const response = await axios.get(
-    `{URLS.DETAILS}${movieId}/reviews?language=${language}&page=${page}`,
+    `${URLS.DETAILS}${movieId}/reviews?language=${language}&page=${page}`,
     { ...options, signal }
   );
   return response.data;
