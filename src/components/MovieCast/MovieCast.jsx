@@ -17,17 +17,10 @@ const MovieCast = () => {
     return () => cancel();
   }, [movieId, fetchData, cancel]);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     console.log('Cast', data);
-  //   }
-  // }, [data]);
-
   return (
     <div className={s.cast}>
       {loading && <Loader />}
       {error && <Error error="Faild to load cast data!" />}
-      {/* MovieCast component {movieId} */}
       {data && data?.cast && data.cast.length > 0 && (
         <ul className={s.castList}>
           {data.cast.map((actor) => (
